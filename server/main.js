@@ -1,7 +1,10 @@
 import { Meteor } from 'meteor/meteor'
 import { Accounts } from 'meteor/accounts-base'
-import { TasksCollection } from '/imports/api/TasksCollection'
 import { ServiceConfiguration } from 'meteor/service-configuration'
+import { TasksCollection } from '/imports/db/TasksCollection'
+import '../imports/api/TasksMethods'
+import '../imports/api/TasksPublications'
+
 require('dotenv').config()
 
 const insertTask = (taskText, user) =>
@@ -21,7 +24,6 @@ Meteor.startup(() => {
       password: SEED_PASSWORD
     })
   }
-  console.log(process.env)
   ServiceConfiguration.configurations.upsert(
     { service: 'github' },
     {
